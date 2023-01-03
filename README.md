@@ -46,21 +46,21 @@ As a user, all the cards needs to be counted as point. so, countDeck function is
 As a user, you need to draw a card. The last item needs to be picked so pop method needs to be used. 
 
        function drawCard(){ 
-        .....pop()    take out one card and show the card on the screen <br/>
+        .....pop()    take out one card and show the card on the screen 
         return card 
         } 
 
 As a user, you need to have a hit button to draw another cards or more cards. 
 
        function hit(){  
-         .....pop()     take out one or two card and show the card on the screen  <br/>
+         .....pop()     take out one or two card and show the card on the screen  
          }  
 
 As a user, you need to have a stay or stand button not to draw another card and match against the opponent
 
        function stay(){  
          not draw any card and add the total number of points  
-         display total number of points of computer and player and display the winner  <br/>
+         display total number of points of computer and player and display the winner  
          }
 
 As a user, you need to have a determineWinner function and inside the function, put all the logic.
