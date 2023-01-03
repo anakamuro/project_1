@@ -9,12 +9,11 @@ for( let suitCounter = 0; suitCounter < 4; suitCounter++){
     }
 }
 return deck;
-console.log(deck)
 }
 
 
 function shuffle(deck) {
-    for(var i = 0; i < 52; i++) {
+    for(let i = 0; i < 52; i++) {
     let tempCard = deck[i]
     let randomIndex = Math.floor(Math.random() * 52);
     deck[i] = deck[randomIndex]
@@ -24,3 +23,10 @@ function shuffle(deck) {
 
  let testDeck = makeDeck()
  shuffle(testDeck)
+ console.log(testDeck)
+ 
+
+ function startGame(deck){
+    makeDeck()
+    shuffle()
+ }
