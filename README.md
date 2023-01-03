@@ -85,15 +85,15 @@ As a user, the player can play a match with a computer.
 
 As a user, the player can see the statistics like how many times the computer wins and the player wins.
 
-   function numOfWins(){ 
-    if(player wins){  
-        numOfWins++.   
-     player: totalW.appendChild(win)  
-    } else if (computer wins){  
-        numOfWins++  <br/>
-     computer: totalW.appendChild(win)  
-     }  <br/>
-    }  <br/>
+         function numOfWins(){ 
+           if(player wins){  
+           numOfWins++.   
+           player: totalW.appendChild(win)  
+           } else if (computer wins){  
+           numOfWins++  
+           computer: totalW.appendChild(win)  
+           }  
+           }  
 
 As a user, the computer can hide the second card which the player will become more difficulty to guess how many points the computer will get. 
 
@@ -102,8 +102,8 @@ As a user, the player can bet money and it starts from $500. If the money become
     function bet(money){  
       deduct bet money from all the money player have  
       change all the money player have on the screen   
-      show bet money on the screen  <br/>
-      }  <br/>
+      show bet money on the screen  
+      }  
 
 3.
 
@@ -112,6 +112,6 @@ As a user, the player can see the score board of the money which the player got 
      function score(){  
       add to the overall the money that player have. 
       display to the screen how much the user have. 
-      }  <br/>
+      }  
 
 As a user, the player can see the champion cup if the money of the player got went over $5000. 
