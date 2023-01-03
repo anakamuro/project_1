@@ -19,9 +19,9 @@ const nums = ["2" to "10", "J", "Q", "K", "A"]
     for( let numCounter = 0; numCounter < 13; numCounter++){
         deck.push(nums[numCounter] + suits[suitCounter])
     }
-}
-return deck
-}
+} <br/>
+return deck<br/>
+} <br/>
 
 As a user, the player need to shuffle deck. Because to play the game of blackjack, random card needs to be picked. So, you need to create a shuffle function. 
 
