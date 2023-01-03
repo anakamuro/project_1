@@ -18,8 +18,8 @@ const nums = ["2" to "10", "J", "Q", "K", "A"]
     for( let suitCounter = 0; suitCounter < 4; suitCounter++){
     for( let numCounter = 0; numCounter < 13; numCounter++){
         deck.push(nums[numCounter] + suits[suitCounter])<br/>
-    } <br/>
-} <br/>
+    } 
+} 
 return deck<br/>
 } <br/>
 
