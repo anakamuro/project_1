@@ -45,23 +45,23 @@ function countDeck(){
 
 As a user, you need to draw a card. The last item needs to be picked so pop method needs to be used. 
 
-  function drawCard(){
-    .....pop()    take out one card and show the card on the screen
+  function drawCard(){ <br/>
+    .....pop()    take out one card and show the card on the screen <br/>
 
-    return card
-  }
+    return card <br/>
+  } <br/>
 
 As a user, you need to have a hit button to draw another cards or more cards. 
 
-   function hit(){
-    .....pop()     take out one or two card and show the card on the screen
-   }
+   function hit(){  <br/>
+    .....pop()     take out one or two card and show the card on the screen  <br/>
+   }  <br/>
 
 As a user, you need to have a stay or stand button not to draw another card and match against the opponent
 
-   function stay(){
-       not draw any card and add the total number of points
-       display total number of points of computer and player and display the winner
+   function stay(){  <br/>
+       not draw any card and add the total number of points  <br/>
+       display total number of points of computer and player and display the winner  <br/>
    }
 
 As a user, you need to have a determineWinner function and inside the function, put all the logic.
@@ -86,33 +86,33 @@ As a user, the player can play a match with a computer.
 
 As a user, the player can see the statistics like how many times the computer wins and the player wins.
 
-   function numOfWins(){
-    if(player wins){
-        numOfWins++
-     player: totalW.appendChild(win)
-    } else if (computer wins){
-        numOfWins++
-     computer: totalW.appendChild(win)
-    }
-   }
+   function numOfWins(){  <br/>
+    if(player wins){  <br/>
+        numOfWins++.   <br/>
+     player: totalW.appendChild(win)  <br/>
+    } else if (computer wins){  <br/>
+        numOfWins++  <br/>
+     computer: totalW.appendChild(win)  <br/>
+    }  <br/>
+   }  <br/>
 
 As a user, the computer can hide the second card which the player will become more difficulty to guess how many points the computer will get. 
 
 As a user, the player can bet money and it starts from $500. If the money becomes 0, the game is over. 
 
-  function bet(money){
-   deduct bet money from all the money player have 
-   change all the money player have on the screen 
-   show bet money on the screen
-  }
+  function bet(money){  <br/>
+   deduct bet money from all the money player have  <br/>
+   change all the money player have on the screen   <br/>
+   show bet money on the screen  <br/>
+  }  <br/>
 
 3.
 
 As a user, the player can see the score board of the money which the player got by winning. 
 
- function score(){
-    add to the overall the money that player have. 
-    display to the screen how much the user have. 
- }
+ function score(){  <br/>
+    add to the overall the money that player have.  <br/>
+    display to the screen how much the user have.  <br/>
+ }  <br/>
 
 As a user, the player can see the champion cup if the money of the player got went over $5000. 
