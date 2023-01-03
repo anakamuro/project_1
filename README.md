@@ -34,48 +34,48 @@ As a user, the player need to shuffle deck. Because to play the game of blackjac
 
 As a user, all the cards needs to be counted as point. so, countDeck function is needed. J, Q, K are counted as 10 and A is counted as 1 or 11 depending on the situation. 
 
-function countDeck(){
-    case J
-    return 10
-    case Q
-    return 10
-    case K
-    return 10
-}
+      function countDeck(){
+       case J
+       return 10
+       case Q
+       return 10
+       case K
+       return 10
+        }
 
 As a user, you need to draw a card. The last item needs to be picked so pop method needs to be used. 
 
-  function drawCard(){ <br/>
-   .....pop()    take out one card and show the card on the screen <br/>
-   return card <br/>
-   } <br/>
+       function drawCard(){ <br/>
+        .....pop()    take out one card and show the card on the screen <br/>
+        return card <br/>
+        } <br/>
 
 As a user, you need to have a hit button to draw another cards or more cards. 
 
-   function hit(){  <br/>
-    .....pop()     take out one or two card and show the card on the screen  <br/>
-    }  <br/>
+       function hit(){  <br/>
+         .....pop()     take out one or two card and show the card on the screen  <br/>
+         }  <br/>
 
 As a user, you need to have a stay or stand button not to draw another card and match against the opponent
 
-   function stay(){  <br/>
-    not draw any card and add the total number of points  <br/>
-     display total number of points of computer and player and display the winner  <br/>
-    }
+       function stay(){  <br/>
+         not draw any card and add the total number of points  <br/>
+         display total number of points of computer and player and display the winner  <br/>
+         }
 
 As a user, you need to have a determineWinner function and inside the function, put all the logic.
 
-   function determineWinner(){
-    (yourHand > 21){
-        return You lose
-    } else if (yourHand < comHand <= 21){
-        return you lose
-    } else if (comHand < yourHand <= 21){
-        return you win
-    } else if (comHand === yourHand < 21){
-       return you are tie
-    }
-   }
+       function determineWinner(){
+        (yourHand > 21){
+          return You lose
+        } else if (yourHand < comHand <= 21){
+          return you lose
+        } else if (comHand < yourHand <= 21){
+          return you win
+        } else if (comHand === yourHand < 21){
+          return you are tie
+        }
+        }
 
 As a user, the player can play a match with a computer.
 
@@ -99,19 +99,19 @@ As a user, the computer can hide the second card which the player will become mo
 
 As a user, the player can bet money and it starts from $500. If the money becomes 0, the game is over. 
 
-  function bet(money){  <br/>
-   deduct bet money from all the money player have  <br/>
-   change all the money player have on the screen   <br/>
-   show bet money on the screen  <br/>
-   }  <br/>
+    function bet(money){  <br/>
+      deduct bet money from all the money player have  <br/>
+      change all the money player have on the screen   <br/>
+      show bet money on the screen  <br/>
+      }  <br/>
 
 3.
 
 As a user, the player can see the score board of the money which the player got by winning. 
 
- function score(){  <br/>
-  add to the overall the money that player have.  <br/>
-  display to the screen how much the user have.  <br/>
-  }  <br/>
+     function score(){  <br/>
+      add to the overall the money that player have.  <br/>
+      display to the screen how much the user have.  <br/>
+      }  <br/>
 
 As a user, the player can see the champion cup if the money of the player got went over $5000. 
