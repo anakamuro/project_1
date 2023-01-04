@@ -8,6 +8,7 @@ const DEALER = document.getElementById("dealer")
 const PLAYER = document.getElementById("player")
 const HIT_BUTTON = document.getElementById("hit-button")
 const PASS_BUTTON = document.getElementById("pass-button")
+const RESET_BUTTON = document.getElementById("reset-button")
 const BUTTON_CONTAINER = document.getElementById("button-container")
 const NOTICE = document.getElementById("notice")
 const NEX_HAND_BUTTON = document.getElementById("next-hand-button")
@@ -108,9 +109,14 @@ const decideWinneer = async() => {
   let playerValue = await calcValue(playerHand)
 
  alert(`Dealer has ${dealerValue}, you have ${playerValue}`)
-  dealerValue > playerValue? alert("dealer wins!"): alert("player wins")
+ if(dealerValue === playerValue){
+  alert("dealer and player are tie.")
+} else if ( dealerValue > playerValue){
+   alert("dealer wins!")
+} else {
+  alert("player wins")
 }
-
+}
 const hitDealer = async() => {
   const hiddenCard = DEALER.children[0];
   hiddenCard.classList.remove("back");
@@ -133,9 +139,16 @@ const hitDealer = async() => {
   } else {
     decideWinneer()
   }
-
 }
+
+ function reset(){
+  allDecks === 0;
+  dealerHand === 0;
+  playerHand === 0;
+  value = 0;
+ }
 
 HIT_BUTTON.addEventListener('click', hitPlayer)
 PASS_BUTTON.addEventListener('click', hitDealer)
+RESET_BUTTON.addEventListener('click', reset)
 dealHands()

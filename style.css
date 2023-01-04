@@ -60,3 +60,15 @@ button {
     display: flex;
     flex-direction: row;
 }
+.dealer {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.player {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
