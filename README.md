@@ -1,6 +1,6 @@
 Wireframe
 
-![Wireframe](wireframe.png))
+![Wireframe](wireframe.png)
 
 You can also see the wireframe in index.html
 
@@ -70,16 +70,22 @@ That the dealer's hand is hidden at the first card is realized by using classlis
     })
     }
 
-As a user, you need to have a hit button to draw another cards or more cards.
+As a user, you need to have a hit button to draw another cards or more cards. So, you need to make a function, hit player function. In the case, you need to use a selectRandom function again and you need to push to the player hand. Then you need to put a div and connect with newCardNode.
 
-   function hit(){  
-     .....pop()     take out one or two card and show the card on the screen  
+   function hitPlayer(){  
+     const newCard = selectRandomCard()
+     playerHand.push(newCard);
+     const newCardNode = CARD_MODEL.cloneNode(true);
+     newCardNode.innerHTML = newCard;
+     PLAYER.append(newCardNode)
+     ...
      }  
 As a user, you need to have a stay or stand button not to draw another card and match against the opponent
 
    function stay(){  
      not draw any card and add the total number of points  
-     display total number of points of computer and player and display the winner  
+     display total number of points of computer and player and display the 
+     winner  
      }
 As a user, you need to have a determineWinner function and inside the function, put all the logic.
 
@@ -96,6 +102,8 @@ As a user, you need to have a determineWinner function and inside the function, 
     }
 As a user, the player can play a match with a computer.
 
+2.
+
 As a user, the player can see the statistics like how many times the computer wins and the player wins.
 
      function numOfWins(){ 
@@ -107,19 +115,27 @@ As a user, the player can see the statistics like how many times the computer wi
        computer: totalW.appendChild(win)  
        }  
        }  
-As a user, the computer can hide the second card which the player will become more difficulty to guess how many points the computer will get.
 
 As a user, the player can bet money and it starts from $500. If the money becomes 0, the game is over.
 
-function bet(money){  
-  deduct bet money from all the money player have  
-  change all the money player have on the screen   
-  show bet money on the screen  
-  }  
+      function bet(money){  
+       deduct bet money from all the money player have  
+       change all the money player have on the screen   
+       show bet money on the screen  
+       }  
+
+3. 
+
 As a user, the player can see the score board of the money which the player got by winning.
 
- function score(){  
-  add to the overall the money that player have. 
-  display to the screen how much the user have. 
-  }  
+      function score(){  
+       add to the overall the money that player have. 
+       display to the screen how much the user have. 
+       }  
 As a user, the player can see the champion cup if the money of the player got went over $5000.
+
+       function showCup(){
+        if(money > 5000){
+         cup.style.display = "block";
+        }
+       }
