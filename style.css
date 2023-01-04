@@ -25,3 +25,38 @@ button {
     font-size: 20px;
     font-style: italic;
 }
+
+.wrapper {
+    margin: auto;
+    width: fit-content;
+}
+.cards {
+    display: flex;
+    gap: 10px;
+}
+
+.card {
+    height: 120px;
+    width: 120px;
+    border: 2px solid black;
+    padding-top: 60px;
+    border-radius: 10px;
+    font-size: 3rem;
+    text-align: center;
+    box-shadow: 1px 1px 3px 1px yellow;
+}
+.card[data-red=true]{
+    color: red;
+}
+.back {
+    content: "";
+    background-color: green;
+}
+#dealer {
+    display: flex;
+    flex-direction: row;
+}
+#player {
+    display: flex;
+    flex-direction: row;
+}
