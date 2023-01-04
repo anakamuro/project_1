@@ -13,6 +13,69 @@ const BUTTON_CONTAINER = document.getElementById("button-container")
 const NOTICE = document.getElementById("notice")
 const NEX_HAND_BUTTON = document.getElementById("next-hand-button")
 
+
+function init() {
+  game.main = document.querySelector('#game');
+  game.main.textContent = "Hello World";
+
+  game.dashboard = document.createElement('div')
+  game.playerCash = document.createElement('div');
+  game.playerCash.classList.add('message');
+  game.playerCash.textContent = "Player Cash $100";
+  game.append(game.playerCash)
+  
+  game.cash = 100;
+  game.bet = 0;
+  game.scoreboard = document.createElement('div')
+  game.status = document.createElement('div')
+  game.scoreboard.textContent = "Dealer 0 vs Player 0";
+  game.scoreboard.style.fontSize = "2em";
+  game.append(game.scoreboard)
+  game.main.append(game.scoreboard)
+
+  inputBet = document.createElement('div')
+  inputBet.setAttribute('type', 'number');
+  inputBet.style.width = "4em";
+  inputBet.style.height = "2em";
+  inputBet.style.fontSize = "1.4em";
+  inputBet.style.marginTop = "1em";
+  inputBet.value = 0;
+  game.append(inputBet)
+
+  betButton = document.createElement('div')
+  betButton.textContent = "Bet Amount"
+  betButton.classList.add('btn')
+  game.append(betButton)
+  updateCash();
+  return {
+    init: init
+  }
+}
+
+function updateCash(){
+console.log(isNaN(inputBet.value));
+if(isNaN(inputBet.value) || (inputBet.value.length < 1)){
+  game.inputBet.value = 0;
+}
+if(game.inputBet.value > game.cash){
+  game.inputBet.value = game.cash
+}
+game.bet = Number(game.inputBet.value)
+//game.playerCash.textContent = "Player Cash $"+ (game.cash - game.bet)
+}
+
+function lockWager(tog){
+  game.inputBet.disabled = tog;
+  game.betButton.disabled = tog;
+}
+
+function setBet(){
+  game.status.textContent = "You bet $"+ game.bet;
+  game.cash = game.cash - game.bet;
+  game.playerCash.textContent = "Player Cash $"+game.cash;
+  lockWager(true);
+}
+
 function makeDeck(){
 const suits = ["H", "C", "D", "S"];
 const nums = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
@@ -110,12 +173,19 @@ const decideWinneer = async() => {
 
  alert(`Dealer has ${dealerValue}, you have ${playerValue}`)
  if(dealerValue === playerValue){
+  game.cash = game.cash + game.bet
   alert("dealer and player are tie.")
 } else if ( dealerValue > playerValue){
    alert("dealer wins!")
 } else {
   alert("player wins")
+  game.cash = game.cash + (game.bet * 2)
 }
+}
+
+if(game.cash < 1){
+  game.cash = 0;
+  game.bet = 0;
 }
 const hitDealer = async() => {
   const hiddenCard = DEALER.children[0];
@@ -142,13 +212,21 @@ const hitDealer = async() => {
 }
 
  function reset(){
-  allDecks === 0;
-  dealerHand === 0;
-  playerHand === 0;
-  value = 0;
+  allDecks = 0;
+  dealerHand = 0;
+  playerHand = 0;
+  deck = 0;
+  
  }
 
+ document.addEventListener('DOMContentLoaded', init)
 HIT_BUTTON.addEventListener('click', hitPlayer)
 PASS_BUTTON.addEventListener('click', hitDealer)
 RESET_BUTTON.addEventListener('click', reset)
 dealHands()
+betButton.addEventListener('click', setBet)
+inputBet.addEventListener('change', updateCash)
+
+RESET_BUTTON.addEventListener("click", function (){
+    location.reload();
+  })
