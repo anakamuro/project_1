@@ -1,6 +1,6 @@
 Wireframe
 
- https://www.figma.com/file/7AUhwduPCCY3riFeUj5Kn5/Black-Jack-wireframe?node-id=0%3A1&t=Kb7kCNK5lQP23K8I-1
+ <img src="https://www.figma.com/file/7AUhwduPCCY3riFeUj5Kn5/Black-Jack-wireframe?node-id=0%3A1&t=Kb7kCNK5lQP23K8I-1" alt="wireframe">
 
  You can also see the wireframe in index.html
 
