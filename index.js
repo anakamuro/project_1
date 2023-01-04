@@ -70,13 +70,23 @@ const dealHands = () => {
 
 const calcValue = (hand) => {
   let value = 0;
+  let hasAce = 0;
   hand.forEach((card) => {
     if(card.length === 2){
-      (card[0] === 'K' || card[0] === "Q" || card[0] === "J")? value+=10: value += Number(card[0])
+      if(card[0] === 'A'){
+        hasAce += 1
+      } else {
+        (card[0] === 'K' || card[0] === "Q" || card[0] === "J")? value+=10: value += Number(card[0])
+      }
     } else {
       value+= 10
     }
   })
+
+  if(hasAce > 0){
+   value + 11 > 21 ? value +=1 : value += 11;
+   value += (hasAce-1)+1;
+  }
   return value
 }
 

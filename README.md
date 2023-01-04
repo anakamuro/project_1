@@ -105,6 +105,14 @@ As a user, you need to have a determineWinner function and inside the function, 
          }
 As a user, the player can play a match with a computer.
 
+As a user, the player can bet money and it starts from $500. If the money becomes 0, the game is over.
+
+      function bet(money){  
+       deduct bet money from all the money player have  
+       change all the money player have on the screen   
+       show bet money on the screen  
+       }  
+
 2.
 
 As a user, the player can see the statistics like how many times the computer wins and the player wins.
@@ -119,13 +127,13 @@ As a user, the player can see the statistics like how many times the computer wi
        }  
        }  
 
-As a user, the player can bet money and it starts from $500. If the money becomes 0, the game is over.
+As a user, if the user won more than 10 times, the winning percentage score board and the number of wins score board will be shown on the board. 
 
-      function bet(money){  
-       deduct bet money from all the money player have  
-       change all the money player have on the screen   
-       show bet money on the screen  
-       }  
+       function showBoard(){
+         (numberOfWins > 10){
+        score.style.display  = "block"
+         }
+        }
 
 3. 
 
