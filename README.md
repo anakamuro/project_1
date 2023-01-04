@@ -1,5 +1,6 @@
 Wireframe
 
+
 ![Wireframe](wireframe.png)
 
 You can also see the wireframe in index.html
@@ -75,6 +76,7 @@ That the dealer's hand is hidden at the first card is realized by using classlis
 
 As a user, you need to have a hit button to draw another cards or more cards. So, you need to make a function, hit player function. In the case, you need to use a selectRandom function again and you need to push to the player hand. Then you need to put a div and connect with newCardNode.
 
+
      function hitPlayer(){  
        const newCard = selectRandomCard()
        playerHand.push(newCard);
@@ -117,6 +119,7 @@ As a user, the player can bet money and it starts from $500. If the money become
 
 As a user, the player can see the statistics like how many times the computer wins and the player wins.
 
+
      function numOfWins(){ 
        if(player wins){  
        numOfWins++.   
@@ -150,3 +153,4 @@ As a user, the player can see the champion cup if the money of the player got we
          cup.style.display = "block";
         }
        }
+
