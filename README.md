@@ -8,46 +8,48 @@ User Stories. BlackJack
 
 As a user, all the 52 cards needs to come out. MakeDeck() function needs to be there. You need to make an array of spades, hearts, clover and diamond. Then, you need to create array of Ace to king cards. Then, you need to use for method and put all the cards inside the deck.
 
-suits = ["H", "C", "D", "S"] const nums = ["2" to "10", "J", "Q", "K", "A"]
+       suits = ["H", "C", "D", "S"] const nums = ["2" to "10", "J", "Q", 
+       "K", "A"]
 
-deck = []
+       deck = []
 
-function makeDeck(){
-for( let suitCounter = 0; suitCounter < 4; suitCounter++){
-for( let numCounter = 0; numCounter < 13; numCounter++){
-    deck.push(nums[numCounter] + suits[suitCounter])
-} 
-} 
-return deck
-} 
+       function makeDeck(){
+        for( let suitCounter = 0; suitCounter < 4; suitCounter++){
+        for( let numCounter = 0; numCounter < 13; numCounter++){
+        deck.push(nums[numCounter] + suits[suitCounter])
+        } 
+        } 
+        return deck
+        } 
 As a user, the player need to shuffle deck. Because to play the game of blackjack, random card needs to be picked. So, you need to create a shuffle function.
 
- function shuffle(deck){
- for(let i = 0; i < 52; i++) {
- let tempCard = deck[i]
- let randomIndex = Math.floor(Math.random() * 52);
-  ...
-  }
+        function shuffle(deck){
+         for(let i = 0; i < 52; i++) {
+         let tempCard = deck[i]
+         let randomIndex = Math.floor(Math.random() * 52);
+         ...
+         }
 As a user, all the cards needs to be counted as point. so, countDeck function is needed. J, Q, K are counted as 10 and A is counted as 1 or 11 depending on the situation.
 
-  function countDeck(){
-   case J
-   return 10
-   case Q
-   return 10
-   case K
-   return 10
-    }
+         function countDeck(){
+          case J
+          return 10
+          case Q
+          return 10
+          case K
+          return 10
+          }
 As a user, you need to draw a random card. You need to get a randomIndex first to generate a random number.
 
-   function selectRandomCard(){ 
-    const randomIndex = Math.floor(Math.random()* 52)    take out one card and show the card on the screen 
-    ...
-    ...
-    const card = allDecks[randomIndex]
-    allDecks.splice(randomIndex, 1)
-    return card;
-    } 
+         function selectRandomCard(){ 
+          const randomIndex = Math.floor(Math.random()* 52)    take out one 
+          card and show the card on the screen 
+          ...
+          ...
+          const card = allDecks[randomIndex]
+          allDecks.splice(randomIndex, 1)
+          return card;
+          } 
 
 As a user, you need to present two cards on the table both on the computer hand and on the player hand. So, you need to use 
 you need to use selectRandom function twice and need to make a deal Hands function. And connect with CARD_MODEL which has div already. 
