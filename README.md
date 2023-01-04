@@ -57,7 +57,8 @@ That the dealer's hand is hidden at the first card is realized by using classlis
     dealerHand = [selectRandomCard(), selectRandomCard()]
     dealerHand.forEach((card, index)=>{
       const newCard = CARD_MODEL.cloneNode(true);
-      index === 0 ? newCard.classList.add('back') : newCard.innerHTML = card;
+      index === 0 ? newCard.classList.add('back') : newCard.innerHTML = 
+       card;
       ...
       DEALER.append(newCard);
     })
@@ -72,34 +73,34 @@ That the dealer's hand is hidden at the first card is realized by using classlis
 
 As a user, you need to have a hit button to draw another cards or more cards. So, you need to make a function, hit player function. In the case, you need to use a selectRandom function again and you need to push to the player hand. Then you need to put a div and connect with newCardNode.
 
-   function hitPlayer(){  
-     const newCard = selectRandomCard()
-     playerHand.push(newCard);
-     const newCardNode = CARD_MODEL.cloneNode(true);
-     newCardNode.innerHTML = newCard;
-     PLAYER.append(newCardNode)
-     ...
-     }  
+     function hitPlayer(){  
+       const newCard = selectRandomCard()
+       playerHand.push(newCard);
+       const newCardNode = CARD_MODEL.cloneNode(true);
+       newCardNode.innerHTML = newCard;
+       PLAYER.append(newCardNode)
+       ...
+       }  
 As a user, you need to have a stay or stand button not to draw another card and match against the opponent
 
-   function stay(){  
-     not draw any card and add the total number of points  
-     display total number of points of computer and player and display the 
-     winner  
-     }
+      function stay(){  
+        not draw any card and add the total number of points  
+        display total number of points of computer and player and display 
+         the winner  
+        }
 As a user, you need to have a determineWinner function and inside the function, put all the logic.
 
-   function determineWinner(){
-    (yourHand > 21){
-      return You lose
-    } else if (yourHand < comHand <= 21){
-      return you lose
-    } else if (comHand < yourHand <= 21){
-      return you win
-    } else if (comHand === yourHand < 21){
-      return you are tie
-    }
-    }
+       function determineWinner(){
+         (yourHand > 21){
+         return You lose
+         } else if (yourHand < comHand <= 21){
+         return you lose
+         } else if (comHand < yourHand <= 21){
+         return you win
+         } else if (comHand === yourHand < 21){
+         return you are tie
+         }
+         }
 As a user, the player can play a match with a computer.
 
 2.
