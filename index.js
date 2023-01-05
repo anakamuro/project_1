@@ -13,40 +13,40 @@ const BUTTON_CONTAINER = document.getElementById("button-container")
 const NOTICE = document.getElementById("notice")
 const NEX_HAND_BUTTON = document.getElementById("next-hand-button")
 
+   const betButton = document.querySelector('.bet-amount');
 
-function init() {
-  game.main = document.querySelector('#game');
-  game.main.textContent = "Hello World";
+  const inputBet = document.querySelector('input')
+  
+/*
+  game.status = document.createElement('div')
+  game.status.classList.add('message')
+  game.status.textContent = "Message for Player"
+  game.status.style.width = "4em";
+  game.status.style.height = "2em";
+  game.append(game.status)
+*/
+  let cash = 100;
+  let bet = 0;
 
-  game.dashboard = document.createElement('div')
   game.playerCash = document.createElement('div');
   game.playerCash.classList.add('message');
   game.playerCash.textContent = "Player Cash $100";
   game.append(game.playerCash)
+
+  updateCash();
+
+function init() {
+  game.main = document.querySelector('#game');
+
+  game.dashboard = document.createElement('div')
+ 
   
-  game.cash = 100;
-  game.bet = 0;
   game.scoreboard = document.createElement('div')
   game.status = document.createElement('div')
   game.scoreboard.textContent = "Dealer 0 vs Player 0";
   game.scoreboard.style.fontSize = "2em";
   game.append(game.scoreboard)
   game.main.append(game.scoreboard)
-
-  inputBet = document.createElement('div')
-  inputBet.setAttribute('type', 'number');
-  inputBet.style.width = "4em";
-  inputBet.style.height = "2em";
-  inputBet.style.fontSize = "1.4em";
-  inputBet.style.marginTop = "1em";
-  inputBet.value = 0;
-  game.append(inputBet)
-
-  betButton = document.createElement('div')
-  betButton.textContent = "Bet Amount"
-  betButton.classList.add('btn')
-  game.append(betButton)
-  updateCash();
   return {
     init: init
   }
@@ -55,25 +55,28 @@ function init() {
 function updateCash(){
 console.log(isNaN(inputBet.value));
 if(isNaN(inputBet.value) || (inputBet.value.length < 1)){
-  game.inputBet.value = 0;
+  inputBet.value = 0;
 }
-if(game.inputBet.value > game.cash){
-  game.inputBet.value = game.cash
+if(inputBet.value > cash){
+  inputBet.value = cash
 }
-game.bet = Number(game.inputBet.value)
-//game.playerCash.textContent = "Player Cash $"+ (game.cash - game.bet)
+bet = Number(inputBet.value)
+game.playerCash.textContent = "Player Cash $"+ (cash - bet)
 }
-
+game.playerCash.textContent = "Player Cash $"+ (cash - bet)
+/*
 function lockWager(tog){
   game.inputBet.disabled = tog;
   game.betButton.disabled = tog;
 }
-
+*/
 function setBet(){
-  game.status.textContent = "You bet $"+ game.bet;
-  game.cash = game.cash - game.bet;
-  game.playerCash.textContent = "Player Cash $"+game.cash;
-  lockWager(true);
+  const status = document.querySelector('.message')
+  status.textContent = "You bet $"+bet;
+  cash = cash - bet;
+  game.playerCash.textContent = "Player Cash $"+cash;
+ // lockWager(true);
+ console.log('hello')
 }
 
 function makeDeck(){
@@ -173,19 +176,19 @@ const decideWinneer = async() => {
 
  alert(`Dealer has ${dealerValue}, you have ${playerValue}`)
  if(dealerValue === playerValue){
-  game.cash = game.cash + game.bet
+  cash = cash + bet
   alert("dealer and player are tie.")
 } else if ( dealerValue > playerValue){
    alert("dealer wins!")
 } else {
   alert("player wins")
-  game.cash = game.cash + (game.bet * 2)
+  cash = cash + (bet * 2)
 }
 }
 
-if(game.cash < 1){
-  game.cash = 0;
-  game.bet = 0;
+if(cash < 1){
+  cash = 0;
+  bet = 0;
 }
 const hitDealer = async() => {
   const hiddenCard = DEALER.children[0];
@@ -216,7 +219,7 @@ const hitDealer = async() => {
   dealerHand = 0;
   playerHand = 0;
   deck = 0;
-  
+  cash = cash
  }
 
  document.addEventListener('DOMContentLoaded', init)
