@@ -2,6 +2,8 @@
 <hr>
 Black Jack is a simple game that the player who got 21 or close to 21 within 21 will become the winner. 
 <br/>
+<br/>
+<br/>
 
 ![Wireframe](asset/wireframe.png)
 
@@ -14,7 +16,7 @@ The following technology was used in order to create Black Jack:
 - HTML
 - CSS
 
-##Getting Started
+## Getting Started
 <hr>
 To play this game live you can click this [link](http://something.com)
 
