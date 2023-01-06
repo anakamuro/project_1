@@ -7,9 +7,6 @@ const passButton = document.getElementById("pass-button")
 const resetButton = document.getElementById("reset-button")
 const resetScore = document.getElementById("reset-score")
 const resetMoney = document.getElementById("reset-money")
-const buttonContainer = document.getElementById("button-container")
-const notice = document.getElementById("notice")
-const nextHandButton = document.getElementById("next-hand-button")
 const betButton = document.querySelector('.bet-amount');
 const inputBet = document.querySelector('input')
 const player1 = document.querySelector('.player1');
@@ -19,18 +16,7 @@ let playerCash = document.querySelector('.player-cash')
 playerCash.textContent = "Player Cash $100";
 let dealerScore1 = document.querySelector('.dealer-score')
 let playerScore1 = document.querySelector('.player-score')
-//let scoreBoard = document.querySelector('.score-board');
-//scoreBoard.textContent = "Dealer 0 vs Player 0";
-//scoreBoard.style.fontSize = "2em";
 
-/*
-  game.status = document.createElement('div')
-  game.status.classList.add('message')
-  game.status.textContent = "Message for Player"
-  game.status.style.width = "4em";
-  game.status.style.height = "2em";
-  game.append(game.status)
-*/
 let allDecks = []
 let dealerHand = []
 let playerHand = []
@@ -40,17 +26,6 @@ let dealerScore = 0;
 let playerScore = 0;
 let testDeck = makeDeck()
 shuffle(testDeck)
-console.log(testDeck)
-
-
-
-
-function init() {
-	game.main = document.querySelector('#game');
-	game.dashboard = document.createElement('div')
-	game.status = document.createElement('div')
-}
-
 
 function makeDeck(){
 	const suits = ["H", "C", "D", "S"];
@@ -76,8 +51,6 @@ function shuffle(deck) {
     }
 }
 
- 
- 
 const selectRandomCard = () => {
 	const randomIndex = Math.floor(Math.random()* 52)
 	const newDeck = makeDeck()
@@ -86,11 +59,6 @@ const selectRandomCard = () => {
 	allDecks.splice(randomIndex, 1)
 	return card;
 }
-/*
-const randomCard = selectRandomCard()
-*/
- 
-
 
 const dealHands = () => {
 	console.log(testDeck)
@@ -114,8 +82,6 @@ const dealHands = () => {
       player.append(newCard);
     })
 }
-
-//dealHands()
 
 const calcValue = (hand) => {
 	let value = 0;
@@ -149,7 +115,6 @@ const hitPlayer = () => {
 	if(handValue > 21){
 		dealerScore++;
 		player1.textContent = "Player busts. Dealer wins"
-		//dealerScore.innerText = parseInt(dealerScore.innerText) + 1;
 	} 
 }
 
@@ -165,17 +130,22 @@ const decideWinneer = () => {
 	dealerScore++;
 	dealer1.textContent = "dealer wins";
 	cash = cash - bet
-   // dealerScore.innerText = parseInt(dealerScore.innerText) + 1;
 	} else if ( playerValue === 21){
 	playerScore++;
 	player1.textContent = "player has 21. BlackJack!!!";
 	cash = cash + (bet * 2)
-	//playerScore.innerText = parseInt(playerScore.innerText) + 1;
+	} else if (dealerValue === 21){
+		dealerScore++;
+		cash = cash - bet
+        dealer1.textContent = "Dealer got 21. BlackJack!!! Dealer won."
+	} else if (dealerValue > 21){
+		playerScore++;
+		dealer1.textContent = "Dealer Bust. Player won."
+		cash = cash + (bet * 2)
 	} else {
 	playerScore++;
 	player1.textContent = "player wins."
 	cash = cash + (bet * 2)
-	//playerScore.innerText = parseInt(playerScore.innerText) + 1;
 	}
 	if(cash < 1){
 		cash = 0;
@@ -200,17 +170,7 @@ const hitDealer = async() => {
 	}
 	if(handValue < 16 ){
 		hitDealer();
-	} else if (handValue === 21){
-		dealerScore++;
-		cash = cash - bet
-        dealer1.textContent = "Dealer got 21. BlackJack!!! Dealer won."
-		//dealerScore.innerText = parseInt(dealerScore.innerText) + 1;
-	} else if (handValue > 21){
-		playerScore++;
-		dealer1.textContent = "Dealer Bust. Player won."
-		cash = cash + (bet * 2)
-		//playerScore.innerText = parseInt(playerScore.innerText) + 1;
-	} else {
+	}  else {
 		decideWinneer()
 		Score()
 	}
@@ -227,24 +187,16 @@ function updateCash(){
 	bet = Number(inputBet.value)
 	playerCash.textContent = "Player Cash $"+ (cash - bet)
 }
-/*
-function lockWager(tog){
-	game.inputBet.disabled = tog;
-	game.betButton.disabled = tog;
-}
-*/
+
 function setBet(){
     const status = document.querySelector('.message')
     status.textContent = "You bet $"+bet;
     cash = cash - bet;
     playerCash.textContent = "Player Cash $"+cash;
-    // lockWager(true);
     console.log('hello')
 }
 function Score(){
-	//let dealerScore1 = parseInt(dealerScore)
 	dealerScore1.textContent = `${dealerScore}`
-	//let playerScore1 = parseInt(playerScore)
 	playerScore1.textContent = `${playerScore}`
 }
 function resetScore1(){
@@ -255,12 +207,6 @@ function resetMoney1(){
 	cash = 100
 	playerCash.textContent = "Player Cash $"+ 100
 }
-/*
-function updateCash(){
-	playerCash.textContent = `${cash}`
-}*/
-
-  
 
 function resetCards(){
 	dealerHand = []
@@ -281,7 +227,6 @@ function resetCards(){
 	dealHands()
 }
 
-document.addEventListener('DOMContentLoaded', init)
 hitButton.addEventListener('click', hitPlayer)
 passButton.addEventListener('click', hitDealer)
 resetButton.addEventListener('click', resetCards)
@@ -290,7 +235,3 @@ betButton.addEventListener('click', setBet)
 inputBet.addEventListener('change', updateCash)
 resetScore.addEventListener('click', resetScore1)
 resetMoney.addEventListener('click', resetMoney1)
-/*
-RESET_BUTTON.addEventListener("click", function (){
-  
-  })*/
