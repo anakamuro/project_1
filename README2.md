@@ -1,11 +1,12 @@
-#Black Jack
+# Black Jack
 <hr>
 Black Jack is a simple game that the player who got 21 or close to 21 within 21 will become the winner. 
+<br/>
 
 ![Wireframe](asset/wireframe.png)
 
 
-##Technology Used
+## Technology Used
 <hr>
 The following technology was used in order to create Black Jack: 
 
@@ -27,7 +28,7 @@ Instructions:
    money button to reset money to $100 and reset score button to 
    set the score to 0. 
 
-##Next Steps
+## Next Steps
 <hr>
 
 Version 2: 
