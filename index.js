@@ -5,6 +5,8 @@ const player = document.getElementById("player")
 const hitButton = document.getElementById("hit-button")
 const passButton = document.getElementById("pass-button")
 const resetButton = document.getElementById("reset-button")
+const resetScore = document.getElementById("reset-score")
+const resetMoney = document.getElementById("reset-money")
 const buttonContainer = document.getElementById("button-container")
 const notice = document.getElementById("notice")
 const nextHandButton = document.getElementById("next-hand-button")
@@ -15,9 +17,11 @@ const dealer1 = document.querySelector('.dealer1');
 const result = document.querySelector('.result');
 let playerCash = document.querySelector('.player-cash')
 playerCash.textContent = "Player Cash $100";
-let scoreBoard = document.querySelector('.score-board');
+let dealerScore1 = document.querySelector('.dealer-score')
+let playerScore1 = document.querySelector('.player-score')
+//let scoreBoard = document.querySelector('.score-board');
 //scoreBoard.textContent = "Dealer 0 vs Player 0";
-scoreBoard.style.fontSize = "2em";
+//scoreBoard.style.fontSize = "2em";
 
 /*
   game.status = document.createElement('div')
@@ -32,7 +36,8 @@ let dealerHand = []
 let playerHand = []
 let cash = 100;
 let bet = 0;
-const score = [0, 0];
+let dealerScore = 0;
+let playerScore = 0;
 let testDeck = makeDeck()
 shuffle(testDeck)
 console.log(testDeck)
@@ -85,10 +90,7 @@ const selectRandomCard = () => {
 const randomCard = selectRandomCard()
 */
  
-function Score(){
-	scoreBoard.textContent = `Dealer ${score[0]} vs Player ${score[1]}`
-}
-Score()
+
 
 const dealHands = () => {
 	console.log(testDeck)
@@ -145,8 +147,9 @@ const hitPlayer = () => {
 	player.append(newCardNode)
 	const handValue = calcValue(playerHand);
 	if(handValue > 21){
+		dealerScore++;
 		player1.textContent = "Player busts. Dealer wins"
-		score[0]++;
+		//dealerScore.innerText = parseInt(dealerScore.innerText) + 1;
 	} 
 }
 
@@ -159,20 +162,26 @@ const decideWinneer = () => {
 	cash = cash + bet
 	player1.textContent = "dealer and players are tie."
 	} else if ( dealerValue > playerValue){
+	dealerScore++;
 	dealer1.textContent = "dealer wins";
-    score[0]++;
+	cash = cash - bet
+   // dealerScore.innerText = parseInt(dealerScore.innerText) + 1;
 	} else if ( playerValue === 21){
+	playerScore++;
 	player1.textContent = "player has 21. BlackJack!!!";
-	score[1]++;
+	cash = cash + (bet * 2)
+	//playerScore.innerText = parseInt(playerScore.innerText) + 1;
 	} else {
+	playerScore++;
 	player1.textContent = "player wins."
 	cash = cash + (bet * 2)
-	score[1]++;
+	//playerScore.innerText = parseInt(playerScore.innerText) + 1;
 	}
 	if(cash < 1){
 		cash = 0;
 		bet = 0;
 	}
+	Score()
 }
 
 
@@ -192,13 +201,18 @@ const hitDealer = async() => {
 	if(handValue < 16 ){
 		hitDealer();
 	} else if (handValue === 21){
+		dealerScore++;
+		cash = cash - bet
         dealer1.textContent = "Dealer got 21. BlackJack!!! Dealer won."
-		score[0]++;
+		//dealerScore.innerText = parseInt(dealerScore.innerText) + 1;
 	} else if (handValue > 21){
+		playerScore++;
 		dealer1.textContent = "Dealer Bust. Player won."
-		score[1]++;
+		cash = cash + (bet * 2)
+		//playerScore.innerText = parseInt(playerScore.innerText) + 1;
 	} else {
 		decideWinneer()
+		Score()
 	}
 }
 
@@ -223,10 +237,29 @@ function setBet(){
     const status = document.querySelector('.message')
     status.textContent = "You bet $"+bet;
     cash = cash - bet;
-    game.playerCash.textContent = "Player Cash $"+cash;
+    playerCash.textContent = "Player Cash $"+cash;
     // lockWager(true);
     console.log('hello')
 }
+function Score(){
+	//let dealerScore1 = parseInt(dealerScore)
+	dealerScore1.textContent = `${dealerScore}`
+	//let playerScore1 = parseInt(playerScore)
+	playerScore1.textContent = `${playerScore}`
+}
+function resetScore1(){
+	dealerScore1.textContent = 0
+    playerScore1.textContent = 0
+}
+function resetMoney1(){
+	cash = 100
+	playerCash.textContent = "Player Cash $"+ 100
+}
+/*
+function updateCash(){
+	playerCash.textContent = `${cash}`
+}*/
+
   
 
 function resetCards(){
@@ -255,6 +288,8 @@ resetButton.addEventListener('click', resetCards)
 dealHands()
 betButton.addEventListener('click', setBet)
 inputBet.addEventListener('change', updateCash)
+resetScore.addEventListener('click', resetScore1)
+resetMoney.addEventListener('click', resetMoney1)
 /*
 RESET_BUTTON.addEventListener("click", function (){
   

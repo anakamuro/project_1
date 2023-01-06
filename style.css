@@ -82,3 +82,13 @@ input {
     font-size: 1.4em;
     font-family: cursive;
 }
+.dealer-score {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+.player-score {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
