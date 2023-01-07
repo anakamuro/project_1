@@ -51,7 +51,7 @@ function shuffle(deck) {
     deck[randomIndex] = tempCard
     }
 }
-
+/*
 const selectRandomCard = () => {
 	const randomIndex = Math.floor(Math.random()* 52)
 	const newDeck = makeDeck()
@@ -60,7 +60,7 @@ const selectRandomCard = () => {
 	allDecks.splice(randomIndex, 1)
 	return card;
 }
-
+*/
 const dealHands = () => {
 	console.log(testDeck)
     dealerHand = [testDeck.pop(), testDeck.pop()]
@@ -107,7 +107,7 @@ const calcValue = (hand) => {
 }
 
 const hitPlayer = () => {
-	const newCard = selectRandomCard()
+	const newCard = testDeck.pop()
 	playerHand.push(newCard);
 	const newCardNode = cardModel.cloneNode(true);
 	newCardNode.innerHTML = newCard;
@@ -156,7 +156,7 @@ const hitDealer = async() => {
 	hiddenCard.innerHTML = dealerHand[0];
 	let handValue = await calcValue(dealerHand);
 	if(handValue < 16){
-		let newCard = selectRandomCard();
+		let newCard = testDeck.pop()
 		dealerHand.push(newCard)
 		const newCardNode = cardModel.cloneNode(true);
 		newCardNode.innerHTML = newCard;
