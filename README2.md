@@ -7,7 +7,7 @@ Black Jack is a simple game that the player who got 21 or close to 21 within 21 
 
 ![Wireframe](asset/wireframe.png)
 
-![Picture](asset/game.Screen.jpeg)
+<img src="asset/game.Screen.jpeg" alt="game-screen"/>
 ## Technology Used
 <hr>
 The following technology was used in order to create Black Jack: 

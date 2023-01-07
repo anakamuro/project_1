@@ -108,7 +108,7 @@ input {
    position: absolute;;
    left: 1500px;
    color: gold;
-   display: block;
+   display: none;
 }
 .text {
     margin-top: 30px;
