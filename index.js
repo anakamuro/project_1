@@ -12,6 +12,7 @@ const inputBet = document.querySelector('input')
 const player1 = document.querySelector('.player1');
 const dealer1 = document.querySelector('.dealer1');
 const result = document.querySelector('.result');
+let trophy = document.getElementById("#trophy")
 let playerCash = document.querySelector('.player-cash')
 playerCash.textContent = "Player Cash $100";
 let dealerScore1 = document.querySelector('.dealer-score')
@@ -28,7 +29,7 @@ let testDeck = makeDeck()
 shuffle(testDeck)
 
 function makeDeck(){
-	const suits = ["H", "C", "D", "S"];
+	const suits = ["♥", "♠", "♦", "♣"];
 	const nums = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 	let deck = []
 
@@ -72,13 +73,13 @@ const dealHands = () => {
     dealerHand.forEach((card, index)=>{
       const newCard = cardModel.cloneNode(true);
       index === 0 ? newCard.classList.add('back') : newCard.innerHTML = card;
-      (card[card.length -1] === "D" || card[card.length - 1] === "H") && newCard.setAttribute('data-red', true)
+      (card[card.length -1] === "♦" || card[card.length - 1] === "♥") && newCard.setAttribute('data-red', true)
       dealer.append(newCard);
     })
     playerHand.forEach((card)=>{
       const newCard = cardModel.cloneNode(true);
       newCard.innerHTML = card;
-      (card[card.length -1] === "D" || card[card.length - 1] === "H") && newCard.setAttribute('data-red', true)
+      (card[card.length -1] === "♦" || card[card.length - 1] === "♥") && newCard.setAttribute('data-red', true)
       player.append(newCard);
     })
 }
@@ -100,7 +101,7 @@ const calcValue = (hand) => {
 
 	if(hasAce > 0){
 	value + 11 > 21 ? value +=1 : value += 11;
-	value += (hasAce-1)+1;
+	value += (hasAce-1)*1;
 	}
 	return value
 }
@@ -114,8 +115,10 @@ const hitPlayer = () => {
 	const handValue = calcValue(playerHand);
 	if(handValue > 21){
 		dealerScore++;
+		cash = cash - bet
 		player1.textContent = "Player busts. Dealer wins"
 	} 
+	Score()
 }
 
 const decideWinneer = () => {
@@ -134,15 +137,7 @@ const decideWinneer = () => {
 	playerScore++;
 	player1.textContent = "player has 21. BlackJack!!!";
 	cash = cash + (bet * 2)
-	} else if (dealerValue === 21){
-		dealerScore++;
-		cash = cash - bet
-        dealer1.textContent = "Dealer got 21. BlackJack!!! Dealer won."
-	} else if (dealerValue > 21){
-		playerScore++;
-		dealer1.textContent = "Dealer Bust. Player won."
-		cash = cash + (bet * 2)
-	} else {
+	}  else {
 	playerScore++;
 	player1.textContent = "player wins."
 	cash = cash + (bet * 2)
@@ -170,10 +165,18 @@ const hitDealer = async() => {
 	}
 	if(handValue < 16 ){
 		hitDealer();
-	}  else {
+	}  else if (handValue === 21){
+		dealerScore++;
+		cash = cash - bet
+        dealer1.textContent = "Dealer got 21. BlackJack!!! Dealer won."
+	} else if (handValue > 21){
+		playerScore++;
+		dealer1.textContent = "Dealer Bust. Player won."
+		cash = cash + (bet * 2)
+	} else {
 		decideWinneer()
-		Score()
 	}
+	Score()
 }
 
 function updateCash(){
@@ -186,6 +189,7 @@ function updateCash(){
 	}
 	bet = Number(inputBet.value)
 	playerCash.textContent = "Player Cash $"+ (cash - bet)
+	displayTrophy()
 }
 
 function setBet(){
@@ -193,7 +197,7 @@ function setBet(){
     status.textContent = "You bet $"+bet;
     cash = cash - bet;
     playerCash.textContent = "Player Cash $"+cash;
-    console.log('hello')
+	displayTrophy()
 }
 function Score(){
 	dealerScore1.textContent = `${dealerScore}`
@@ -209,6 +213,7 @@ function resetMoney1(){
 }
 
 function resetCards(){
+	document.getElementById("trophy").style.display = "none"
 	dealerHand = []
 	playerHand = []
 	while (dealer.hasChildNodes()){
@@ -227,10 +232,16 @@ function resetCards(){
 	dealHands()
 }
 
+function displayTrophy(){
+  if(`${cash}` >= 120){
+	document.getElementById("trophy").style.display = "block"
+  }
+}
+
+dealHands()
 hitButton.addEventListener('click', hitPlayer)
 passButton.addEventListener('click', hitDealer)
 resetButton.addEventListener('click', resetCards)
-dealHands()
 betButton.addEventListener('click', setBet)
 inputBet.addEventListener('change', updateCash)
 resetScore.addEventListener('click', resetScore1)

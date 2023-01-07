@@ -7,7 +7,7 @@ Black Jack is a simple game that the player who got 21 or close to 21 within 21 
 
 ![Wireframe](asset/wireframe.png)
 
-
+![Picture](asset/game.Screen.jpeg)
 ## Technology Used
 <hr>
 The following technology was used in order to create Black Jack: 
@@ -18,7 +18,7 @@ The following technology was used in order to create Black Jack:
 
 ## Getting Started
 <hr>
-To play this game live you can click this [link](http://something.com)
+To play this game live you can click this [link](https://anakamuro.github.io/project_1/)
 
 Instructions:
 
