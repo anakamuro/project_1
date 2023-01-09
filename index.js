@@ -51,24 +51,10 @@ function shuffle(deck) {
     deck[randomIndex] = tempCard
     }
 }
-/*
-const selectRandomCard = () => {
-	const randomIndex = Math.floor(Math.random()* 52)
-	const newDeck = makeDeck()
-	allDecks = [ ...allDecks, ...newDeck]
-	const card = allDecks[randomIndex]
-	allDecks.splice(randomIndex, 1)
-	return card;
-}
-*/
+
 const dealHands = () => {
-	console.log(testDeck)
     dealerHand = [testDeck.pop(), testDeck.pop()]
-	console.log(dealerHand)
-	console.log(testDeck)
 	playerHand = [testDeck.pop(), testDeck.pop()]
-	console.log(playerHand)
-	console.log(testDeck)
 	
     dealerHand.forEach((card, index)=>{
       const newCard = cardModel.cloneNode(true);
@@ -180,7 +166,6 @@ const hitDealer = async() => {
 }
 
 function updateCash(){
-	console.log(isNaN(inputBet.value));
 	if(isNaN(inputBet.value) || (inputBet.value.length < 1)){
 		inputBet.value = 0;
 	}
