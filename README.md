@@ -1,6 +1,7 @@
-# <GAME TITLE> Black Jack Championship
+# **GAME TITLe** Black Jack Championship
 <hr>
--- Game Description
+** Game Description ** 
+<br/>
 Black Jack is a simple game that the player who got 21 or close to 21 within 21 will become the winner. 
 <br/>
 <br/>
