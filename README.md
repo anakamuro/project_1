@@ -1,4 +1,4 @@
-# **GAME TITLe** Black Jack Championship
+# **GAME TITLE**     Black Jack Championship
 <hr>
 ** Game Description ** 
 <br/>
