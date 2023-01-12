@@ -1,41 +1,41 @@
-const cardModel = document.createElement('div');
-cardModel.classList.add('card');
-const dealer = document.getElementById("dealer")
-const player = document.getElementById("player")
-const hitButton = document.getElementById("hit-button")
-const passButton = document.getElementById("pass-button")
-const resetButton = document.getElementById("reset-button")
-const resetScore = document.getElementById("reset-score")
-const resetMoney = document.getElementById("reset-money")
-const betButton = document.querySelector('.bet-amount');
-const inputBet = document.querySelector('input')
-const player1 = document.querySelector('.player1');
-const dealer1 = document.querySelector('.dealer1');
-const result = document.querySelector('.result');
-let trophy = document.getElementById("#trophy")
-let playerCash = document.querySelector('.player-cash')
+const cardModel = document.createElement("div");
+cardModel.classList.add("card");
+const dealer = document.getElementById("dealer");
+const player = document.getElementById("player");
+const hitButton = document.getElementById("hit-button");
+const passButton = document.getElementById("pass-button");
+const resetButton = document.getElementById("reset-button");
+const resetScore = document.getElementById("reset-score");
+const resetMoney = document.getElementById("reset-money");
+const betButton = document.querySelector(".bet-amount");
+const inputBet = document.querySelector("input");
+const player1 = document.querySelector(".player1");
+const dealer1 = document.querySelector(".dealer1");
+const result = document.querySelector(".result");
+let trophy = document.getElementById("#trophy");
+let playerCash = document.querySelector(".player-cash");
 playerCash.textContent = "Player Cash $100";
-let dealerScore1 = document.querySelector('.dealer-score')
-let playerScore1 = document.querySelector('.player-score')
+let dealerScore1 = document.querySelector(".dealer-score");
+let playerScore1 = document.querySelector(".player-score");
 
-let allDecks = []
-let dealerHand = []
-let playerHand = []
+let allDecks = [];
+let dealerHand = [];
+let playerHand = [];
 let cash = 100;
 let bet = 0;
 let dealerScore = 0;
 let playerScore = 0;
-let testDeck = makeDeck()
-shuffle(testDeck)
+let testDeck = makeDeck();
+shuffle(testDeck);
 
-function makeDeck(){
+function makeDeck() {
 	const suits = ["♥", "♠", "♦", "♣"];
 	const nums = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 	let deck = []
 
 
-	for( let suitCounter = 0; suitCounter < 4; suitCounter++){
-		for( let numCounter = 0; numCounter < 13; numCounter++){
+	for (let suitCounter = 0; suitCounter < 4; suitCounter++) {
+		for (let numCounter = 0; numCounter < 13; numCounter++) {
 			deck.push(nums[numCounter] + suits[suitCounter])
 		}
 	}
@@ -44,91 +44,91 @@ function makeDeck(){
 
 
 function shuffle(deck) {
-    for(let i = 0; i < 52; i++) {
-    let tempCard = deck[i]
-    let randomIndex = Math.floor(Math.random() * 52);
-    deck[i] = deck[randomIndex]
-    deck[randomIndex] = tempCard
-    }
+	for (let i = 0; i < 52; i++) {
+		let tempCard = deck[i]
+		let randomIndex = Math.floor(Math.random() * 52);
+		deck[i] = deck[randomIndex]
+		deck[randomIndex] = tempCard
+	}
 }
 
-const dealHands = () => {
-    dealerHand = [testDeck.pop(), testDeck.pop()]
+function dealHands() {
+	dealerHand = [testDeck.pop(), testDeck.pop()]
 	playerHand = [testDeck.pop(), testDeck.pop()]
-	
-    dealerHand.forEach((card, index)=>{
-      const newCard = cardModel.cloneNode(true);
-      index === 0 ? newCard.classList.add('back') : newCard.innerHTML = card;
-      (card[card.length -1] === "♦" || card[card.length - 1] === "♥") && newCard.setAttribute('data-red', true)
-      dealer.append(newCard);
-    })
-    playerHand.forEach((card)=>{
-      const newCard = cardModel.cloneNode(true);
-      newCard.innerHTML = card;
-      (card[card.length -1] === "♦" || card[card.length - 1] === "♥") && newCard.setAttribute('data-red', true)
-      player.append(newCard);
-    })
+
+	dealerHand.forEach((card, index) => {
+		const newCard = cardModel.cloneNode(true);
+		index === 0 ? newCard.classList.add('back') : newCard.innerHTML = card;
+		(card[card.length - 1] === "♦" || card[card.length - 1] === "♥") && newCard.setAttribute("data-red", true)
+		dealer.append(newCard);
+	})
+	playerHand.forEach((card) => {
+		const newCard = cardModel.cloneNode(true);
+		newCard.innerHTML = card;
+		(card[card.length - 1] === "♦" || card[card.length - 1] === "♥") && newCard.setAttribute("data-red", true)
+		player.append(newCard);
+	})
 }
 
-const calcValue = (hand) => {
+function calcValue(hand) {
 	let value = 0;
 	let hasAce = 0;
 	hand.forEach((card) => {
-		if(card.length === 2){
-		if(card[0] === 'A'){
-			hasAce += 1
+		if (card.length === 2) {
+			if (card[0] === "A") {
+				hasAce += 1;
+			} else {
+				(card[0] === "K" || card[0] === "Q" || card[0] === "J") ? value += 10 : value += Number(card[0])
+			}
 		} else {
-			(card[0] === 'K' || card[0] === "Q" || card[0] === "J")? value+=10: value += Number(card[0])
-		}
-		} else {
-		value+= 10
+			value += 10;
 		}
 	})
 
-	if(hasAce > 0){
-	value + 11 > 21 ? value +=1 : value += 11;
-	value += (hasAce-1)*1;
+	if (hasAce > 0) {
+		value + 11 > 21 ? value += 1 : value += 11;
+		value += (hasAce - 1) * 1;
 	}
-	return value
+	return value;
 }
 
-const hitPlayer = () => {
+function hitPlayer() {
 	const newCard = testDeck.pop()
 	playerHand.push(newCard);
 	const newCardNode = cardModel.cloneNode(true);
 	newCardNode.innerHTML = newCard;
-	player.append(newCardNode)
+	player.append(newCardNode);
 	const handValue = calcValue(playerHand);
-	if(handValue > 21){
+	if (handValue > 21) {
 		dealerScore++;
-		cash = cash - bet
-		player1.textContent = "Player busts. Dealer wins"
-	} 
-	Score()
+		cash = cash - bet;
+		player1.textContent = "Player busts. Dealer wins";
+	}
+	Score();
 }
 
-const decideWinneer = () => {
-	let dealerValue = calcValue(dealerHand)
-	let playerValue = calcValue(playerHand)
+function decideWinneer() {
+	let dealerValue = calcValue(dealerHand);
+	let playerValue = calcValue(playerHand);
 
-	result.textContent = (`Dealer has ${dealerValue}, you have ${playerValue}`)
-	if(dealerValue === playerValue){
-	cash = cash + bet
-	player1.textContent = "dealer and players are tie."
-	} else if ( dealerValue > playerValue){
-	dealerScore++;
-	dealer1.textContent = "dealer wins";
-	cash = cash - bet
-	} else if ( playerValue === 21){
-	playerScore++;
-	player1.textContent = "player has 21. BlackJack!!!";
-	cash = cash + (bet * 2)
-	}  else {
-	playerScore++;
-	player1.textContent = "player wins."
-	cash = cash + (bet * 2)
+	result.textContent = (`Dealer has ${dealerValue}, you have ${playerValue}`);
+	if (dealerValue === playerValue) {
+		cash = cash + bet;
+		player1.textContent = "dealer and players are tie.";
+	} else if (dealerValue > playerValue) {
+		dealerScore++;
+		dealer1.textContent = "dealer wins";
+		cash = cash - bet;
+	} else if (playerValue === 21) {
+		playerScore++;
+		player1.textContent = "player has 21. BlackJack!!!";
+		cash = cash + (bet * 2);
+	} else {
+		playerScore++;
+		player1.textContent = "player wins.";
+		cash = cash + (bet * 2);
 	}
-	if(cash < 1){
+	if (cash < 1) {
 		cash = 0;
 		bet = 0;
 	}
@@ -136,98 +136,97 @@ const decideWinneer = () => {
 }
 
 
-const hitDealer = async() => {
+function hitDealer() {
 	const hiddenCard = dealer.children[0];
 	hiddenCard.classList.remove("back");
 	hiddenCard.innerHTML = dealerHand[0];
-	let handValue = await calcValue(dealerHand);
-	if(handValue < 16){
-		let newCard = testDeck.pop()
-		dealerHand.push(newCard)
+	let handValue = calcValue(dealerHand);
+	if (handValue < 16) {
+		let newCard = testDeck.pop();
+		dealerHand.push(newCard);
 		const newCardNode = cardModel.cloneNode(true);
 		newCardNode.innerHTML = newCard;
-		dealer.append(newCardNode)
-		handValue = await calcValue(dealerHand)
+		dealer.append(newCardNode);
+		handValue = calcValue(dealerHand);
 	}
-	if(handValue < 16 ){
+	if (handValue < 16) {
 		hitDealer();
-	}  else if (handValue === 21){
+	} else if (handValue === 21) {
 		dealerScore++;
-		cash = cash - bet
-        dealer1.textContent = "Dealer got 21. BlackJack!!! Dealer won."
-	} else if (handValue > 21){
+		cash = cash - bet;
+		dealer1.textContent = "Dealer got 21. BlackJack!!! Dealer won.";
+	} else if (handValue > 21) {
 		playerScore++;
-		dealer1.textContent = "Dealer Bust. Player won."
-		cash = cash + (bet * 2)
+		dealer1.textContent = "Dealer Bust. Player won.";
+		cash = cash + (bet * 2);
 	} else {
-		decideWinneer()
+		decideWinneer();
 	}
-	Score()
+	Score();
 }
 
-function updateCash(){
-	if(isNaN(inputBet.value) || (inputBet.value.length < 1)){
+function updateCash() {
+	if (isNaN(inputBet.value) || (inputBet.value.length < 1)) {
 		inputBet.value = 0;
 	}
-	if(inputBet.value > cash){
-		inputBet.value = cash
+	if (inputBet.value > cash) {
+		inputBet.value = cash;
 	}
 	bet = Number(inputBet.value)
-	playerCash.textContent = "Player Cash $"+ (cash - bet)
-	displayTrophy()
+	playerCash.textContent = "Player Cash $" + (cash - bet);
+	displayTrophy();
 }
 
-function setBet(){
-    const status = document.querySelector('.message')
-    status.textContent = "You bet $"+bet;
-    cash = cash - bet;
-    playerCash.textContent = "Player Cash $"+cash;
-	displayTrophy()
+function setBet() {
+	const status = document.querySelector(".message");
+	status.textContent = "You bet $" + bet;
+	cash = cash - bet;
+	playerCash.textContent = "Player Cash $" + cash;
+	displayTrophy();
 }
-function Score(){
-	dealerScore1.textContent = `${dealerScore}`
-	playerScore1.textContent = `${playerScore}`
+function Score() {
+	dealerScore1.textContent = `${dealerScore}`;
+	playerScore1.textContent = `${playerScore}`;
 }
-function resetScore1(){
-	dealerScore1.textContent = 0
-    playerScore1.textContent = 0
+function resetScore1() {
+	dealerScore1.textContent = 0;
+	playerScore1.textContent = 0;
 }
-function resetMoney1(){
-	cash = 100
-	playerCash.textContent = "Player Cash $"+ 100
+function resetMoney1() {
+	cash = 100;
+	playerCash.textContent = "Player Cash $" + 100;
 }
 
-function resetCards(){
-	document.getElementById("trophy").style.display = "none"
-	dealerHand = []
-	playerHand = []
-	while (dealer.hasChildNodes()){
-		console.log(dealer.childNodes)
-		dealer.removeChild(dealer.firstElementChild)
+function resetCards() {
+	document.getElementById("trophy").style.display = "none";
+	dealerHand = [];
+	playerHand = [];
+	while (dealer.hasChildNodes()) {
+		dealer.removeChild(dealer.firstElementChild);
 	}
-	while (player.hasChildNodes()){
-		console.log(player.childNodes)
-		player.removeChild(player.firstElementChild)
+	while (player.hasChildNodes()) {
+		console.log(player.childNodes);
+		player.removeChild(player.firstElementChild);
 	}
-	player1.innerHTML = ""
-	dealer1.innerHTML = ""
-	result.innerHTML = ""
-	testDeck = makeDeck()
-    shuffle(testDeck)
-	dealHands()
+	player1.innerHTML = "";
+	dealer1.innerHTML = "";
+	result.innerHTML = "";
+	testDeck = makeDeck();
+	shuffle(testDeck);
+	dealHands();
 }
 
-function displayTrophy(){
-  if(`${cash}` >= 120){
-	document.getElementById("trophy").style.display = "block"
-  }
+function displayTrophy() {
+	if (`${cash}` >= 120) {
+		document.getElementById("trophy").style.display = "block";
+	}
 }
 
 dealHands()
-hitButton.addEventListener('click', hitPlayer)
-passButton.addEventListener('click', hitDealer)
-resetButton.addEventListener('click', resetCards)
-betButton.addEventListener('click', setBet)
-inputBet.addEventListener('change', updateCash)
-resetScore.addEventListener('click', resetScore1)
-resetMoney.addEventListener('click', resetMoney1)
+hitButton.addEventListener('click', hitPlayer);
+passButton.addEventListener('click', hitDealer);
+resetButton.addEventListener('click', resetCards);
+betButton.addEventListener('click', setBet);
+inputBet.addEventListener('change', updateCash);
+resetScore.addEventListener('click', resetScore1);
+resetMoney.addEventListener('click', resetMoney1);
